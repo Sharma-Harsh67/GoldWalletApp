@@ -1,8 +1,8 @@
-package com.wallet.serviceImpl;
+package com.wallet.app.serviceimpl;
 
 import com.wallet.app.model.Users;
-import com.wallet.repository.UsersRepositoryJoshika;
-import com.wallet.service.UsersServiceJoshika;
+import com.wallet.app.repository.UsersRepositoryJoshika;
+import com.wallet.app.service.UsersServiceJoshika;
 
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.wallet.serviceImpl;
+package com.wallet.app.serviceimpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -7,10 +7,10 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.wallet.app.model.Users;
-import com.wallet.dto.VirtualGoldHoldingDTOJoshika;
-import com.wallet.repository.UsersRepositoryJoshika;
-import com.wallet.repository.VirtualGoldRepositoryJoshika;
-import com.wallet.service.VirtualGoldServiceJoshika;
+import com.wallet.app.dto.VirtualGoldHoldingDTOJoshika;
+import com.wallet.app.repository.UsersRepositoryJoshika;
+import com.wallet.app.repository.VirtualGoldRepositoryJoshika;
+import com.wallet.app.service.VirtualGoldServiceJoshika;
 @Service
 public class VirtualGoldServiceImplJoshika implements VirtualGoldServiceJoshika {
 

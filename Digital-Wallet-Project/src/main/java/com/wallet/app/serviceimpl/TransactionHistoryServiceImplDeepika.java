@@ -1,12 +1,12 @@
-package com.wallet.transaction.serviceimpl;
+package com.wallet.app.serviceimpl;
 
 import org.springframework.stereotype.Service;
 
-import com.wallet.transaction.dto.TransactionHistoryDTODeepika;
-import com.wallet.transaction.entity.Users;
-import com.wallet.transaction.repository.TransactionHistoryRepositoryDeepika;
-import com.wallet.transaction.repository.UsersRepositoryDeepika;
-import com.wallet.transaction.service.TransactionHistoryServiceDeepika;
+import com.wallet.app.dto.TransactionHistoryDTODeepika;
+import com.wallet.app.model.Users;
+import com.wallet.app.repository.TransactionHistoryRepositoryDeepika;
+import com.wallet.app.repository.UsersRepositoryDeepika;
+import com.wallet.app.service.TransactionHistoryServiceDeepika;
 
 import java.util.List;
 
