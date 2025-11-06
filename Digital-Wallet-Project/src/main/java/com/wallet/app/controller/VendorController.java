@@ -1,10 +1,10 @@
 package com.wallet.app.controller;
 
+import com.wallet.app.dto.BranchSummaryDTO;
 import com.wallet.app.model.PhysicalGoldTransaction;
 import com.wallet.app.model.Vendor;
 import com.wallet.app.service.VendorService;
 import com.wallet.app.service.VendorTransactionService;
-
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,5 +34,10 @@ public class VendorController {
     @GetMapping("/{id}/transactions")
     public List<PhysicalGoldTransaction> getTransactionsByVendor(@PathVariable Long id) {
         return vendorTransactionService.getTransactionsByVendorId(id);
+    }
+
+    @GetMapping("/branch-summary")
+    public List<BranchSummaryDTO> getBranchSummary() {
+        return vendorService.getBranchSummary();
     }
 }
