@@ -1,7 +1,7 @@
-package com.digitalgoldwallet.controller;
+package com.wallet.app.controller;
 
-import com.digitalgoldwallet.dto.TransactionQuantityDTOKiranmayee;
-import com.digitalgoldwallet.service.PhysicalGoldTransactionsServiceKiranmayee;
+import com.wallet.app.dto.TransactionQuantityDTOKiranmayee;
+import com.wallet.app.service.PhysicalGoldTransactionsServiceKiranmayee;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

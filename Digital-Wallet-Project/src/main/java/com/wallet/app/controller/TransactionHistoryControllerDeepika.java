@@ -1,9 +1,9 @@
-package com.wallet.transaction.controller;
+package com.wallet.app.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-import com.wallet.transaction.dto.TransactionHistoryDTODeepika;
-import com.wallet.transaction.service.TransactionHistoryServiceDeepika;
+import com.wallet.app.dto.TransactionHistoryDTODeepika;
+import com.wallet.app.service.TransactionHistoryServiceDeepika;
 
 import java.util.List;
 

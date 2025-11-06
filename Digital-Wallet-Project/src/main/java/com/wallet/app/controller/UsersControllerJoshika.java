@@ -1,35 +1,41 @@
-package com.wallet.controller;
+package com.wallet.app.controller;
 
-
+import com.wallet.app.model.Users;
+import com.wallet.app.service.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
-
-import com.wallet.app.model.Users;
-import com.wallet.service.UsersServiceJoshika;
-
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/users/joshika")  // ✅ Unique path
 public class UsersControllerJoshika {
 
+    @Autowired
+    private UsersService usersService;
 
-public UsersControllerJoshika(UsersServiceJoshika userService) {
-		super();
-		this.userService = userService;
-	}
+    @GetMapping
+    public List<Users> getAllUsers() {
+        return usersService.getAllUsers();
+    }
 
-private UsersServiceJoshika userService;
+    @GetMapping("/{id}")
+    public Users getUserById(@PathVariable Integer id) {
+        return usersService.getUserById(id);
+    }
 
-@GetMapping
-public List<Users> getAllUsers() {
-return userService.getAllUsers();
+//    @PostMapping
+//    public Users createUser(@RequestBody Users user) {
+//        return usersService.createUser(user);
+//    }
+//
+//    @PutMapping("/{id}")
+//    public Users updateUser(@PathVariable Integer id, @RequestBody Users user) {
+//        return usersService.updateUser(id, user);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deleteUser(@PathVariable Integer id) {
+//        usersService.deleteUser(id);
+//    }
 }
-
-}
-
-

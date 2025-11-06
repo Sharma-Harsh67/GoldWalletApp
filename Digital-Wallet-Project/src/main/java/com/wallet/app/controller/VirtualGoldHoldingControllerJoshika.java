@@ -1,4 +1,4 @@
-package com.wallet.controller;
+package com.wallet.app.controller;
 
 
 import java.util.List;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import com.wallet.dto.VirtualGoldHoldingDTOJoshika;
+import com.wallet.app.dto.VirtualGoldHoldingDTOJoshika;
 
-import com.wallet.service.VirtualGoldServiceJoshika;
+import com.wallet.app.service.VirtualGoldServiceJoshika;
 
 
 
