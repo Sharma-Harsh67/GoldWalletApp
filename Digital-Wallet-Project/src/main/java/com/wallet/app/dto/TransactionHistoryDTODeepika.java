@@ -1,4 +1,4 @@
-package com.wallet.transaction.dto;
+package com.wallet.app.dto;
 
 public class TransactionHistoryDTODeepika {
 

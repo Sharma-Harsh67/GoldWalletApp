@@ -1,4 +1,4 @@
-package com.digitalgoldwallet.dto;
+package com.wallet.app.dto;
 
 public class UsersDTOKiranmayee {
     private String name;
