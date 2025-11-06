@@ -12,8 +12,15 @@ public class VendorBranch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long branchId;
 
+    @Column(name = "branch_name")
+    private String branchName;
+
+    @Column(name = "address_id")
     private Long addressId;
+
     private Double quantity;
+
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,6 +36,9 @@ public class VendorBranch {
     public Long getBranchId() { return branchId; }
     public void setBranchId(Long branchId) { this.branchId = branchId; }
 
+    public String getBranchName() { return branchName; }
+    public void setBranchName(String branchName) { this.branchName = branchName; }
+
     public Long getAddressId() { return addressId; }
     public void setAddressId(Long addressId) { this.addressId = addressId; }
 
@@ -43,4 +53,10 @@ public class VendorBranch {
 
     public List<PhysicalGoldTransaction> getTransactions() { return transactions; }
     public void setTransactions(List<PhysicalGoldTransaction> transactions) { this.transactions = transactions; }
+
+    @Override
+    public String toString() {
+        return "VendorBranch [branchId=" + branchId + ", branchName=" + branchName +
+               ", addressId=" + addressId + ", quantity=" + quantity + ", createdAt=" + createdAt + "]";
+    }
 }
