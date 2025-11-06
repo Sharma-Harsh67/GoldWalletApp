@@ -1,9 +1,9 @@
-package com.wallet.transaction.repository;
+package com.wallet.app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.wallet.transaction.entity.Users;
+import com.wallet.app.model.Users;
 @Repository
 public interface UsersRepositoryDeepika extends JpaRepository<Users, Integer> {
    Users findByNameIgnoreCase(String name);

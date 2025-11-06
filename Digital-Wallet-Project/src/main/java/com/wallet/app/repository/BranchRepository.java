@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface BranchRepository extends JpaRepository<VendorBranch, Long> {
 
-    @Query("SELECT new com.wallet.app.dto.BranchSummaryDTO(vb.branchName, vb.quantity) FROM VendorBranch vb")
+    @Query("SELECT new com.wallet.app.dto.BranchSummaryDTO(vb.branchId, vb.quantity, vb.branch_name) FROM VendorBranch vb")
     List<BranchSummaryDTO> getBranchSummary();
 }

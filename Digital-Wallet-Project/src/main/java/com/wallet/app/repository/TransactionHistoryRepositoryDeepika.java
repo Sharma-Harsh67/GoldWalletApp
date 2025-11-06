@@ -1,9 +1,9 @@
-package com.wallet.transaction.repository;
+package com.wallet.app.repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.wallet.transaction.entity.TransactionHistory;
-import com.wallet.transaction.entity.Users;
+import com.wallet.app.model.TransactionHistory;
+import com.wallet.app.model.Users;
 
 import java.util.List;
 
