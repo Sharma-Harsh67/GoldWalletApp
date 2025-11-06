@@ -1,19 +1,6 @@
-package com.wallet.app.model;
-
+package com.digitalgoldwallet.model;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
 @Entity
 @Table(name = "users")
 public class Users {
@@ -23,45 +10,73 @@ public class Users {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "email", length = 100, nullable = false, unique = true)
     private String email;
 
-    @Column(length = 100)
+    @Column(name = "name", length = 100, nullable = false)
     private String name;
 
-    @Column(name = "address_id")
+    @Column(name = "address_id", nullable = false)
     private Integer addressId;
 
-    @Column
-    private Double balance;
+    @Column(name = "balance", nullable = false)
+    private double balance;
 
-    @Column(name = "created_at")
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    // One user can have many payments
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<Payments> payments;
+   
+    
 
-    // Getters and Setters
-    public Integer getUserId() { return userId; }
-    public void setUserId(Integer userId) { this.userId = userId; }
+    
+    public Integer getUserId() {
+        return userId;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public String getEmail() {
+        return email;
+    }
 
-    public Integer getAddressId() { return addressId; }
-    public void setAddressId(Integer addressId) { this.addressId = addressId; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public Double getBalance() { return balance; }
-    public void setBalance(Double balance) { this.balance = balance; }
+    public String getName() {
+        return name;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public List<Payments> getPayments() { return payments; }
-    public void setPayments(List<Payments> payments) { this.payments = payments; }
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    
 }
