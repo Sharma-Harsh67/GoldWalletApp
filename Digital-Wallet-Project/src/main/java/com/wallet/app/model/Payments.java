@@ -3,15 +3,7 @@ package com.wallet.app.model;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "payments")
@@ -22,7 +14,7 @@ public class Payments {
     @Column(name = "payment_id")
     private Integer paymentId;
 
-    @Column
+    @Column(nullable = false)
     private Double amount;
 
     @Column(name = "payment_method", length = 50)
@@ -37,31 +29,73 @@ public class Payments {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    // Many payments belong to one user
-    @ManyToOne
-    @JsonIgnore
+    // ✅ Don't let JPA manage this column twice
+    @Column(name = "user_id", insertable = false, updatable = false)
+    private Integer userId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private Users user;
 
     // Getters and Setters
-    public Integer getPaymentId() { return paymentId; }
-    public void setPaymentId(Integer paymentId) { this.paymentId = paymentId; }
+    public Integer getPaymentId() {
+        return paymentId;
+    }
 
-    public Double getAmount() { return amount; }
-    public void setAmount(Double amount) { this.amount = amount; }
+    public void setPaymentId(Integer paymentId) {
+        this.paymentId = paymentId;
+    }
 
-    public String getPaymentMethod() { return paymentMethod; }
-    public void setPaymentMethod(String paymentMethod) { this.paymentMethod = paymentMethod; }
+    public Double getAmount() {
+        return amount;
+    }
 
-    public String getTransactionType() { return transactionType; }
-    public void setTransactionType(String transactionType) { this.transactionType = transactionType; }
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 
-    public String getPaymentStatus() { return paymentStatus; }
-    public void setPaymentStatus(String paymentStatus) { this.paymentStatus = paymentStatus; }
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
 
-    public Users getUser() { return user; }
-    public void setUser(Users user) { this.user = user; }
+    public String getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(String transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
+    }
 }

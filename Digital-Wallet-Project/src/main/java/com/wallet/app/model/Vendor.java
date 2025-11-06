@@ -1,5 +1,6 @@
 package com.wallet.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,6 +24,7 @@ public class Vendor {
     private LocalDateTime createdAt;
 
     @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore  // ✅ Added to prevent lazy loading issues
     private List<VendorBranch> branches;
 
     // Getters and Setters

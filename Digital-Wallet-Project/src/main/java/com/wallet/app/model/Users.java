@@ -1,82 +1,59 @@
-package com.digitalgoldwallet.model;
+package com.wallet.app.model;
+ 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
+ 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+ 
 @Entity
 @Table(name = "users")
 public class Users {
-
+ 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Integer userId;
-
-    @Column(name = "email", length = 100, nullable = false, unique = true)
+ 
+    @Column(nullable = false, length = 100)
     private String email;
-
-    @Column(name = "name", length = 100, nullable = false)
+ 
+    @Column(length = 100)
     private String name;
-
-    @Column(name = "address_id", nullable = false)
+ 
+    @Column(name = "address_id")
     private Integer addressId;
-
-    @Column(name = "balance", nullable = false)
-    private double balance;
-
-    @Column(name = "created_at", nullable = false)
+ 
+    @Column
+    private Double balance;
+ 
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
-
+ 
+    // One user can have many payments
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-   
-    
-
-    
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    
+    @JsonIgnore
+    private List<Payments> payments;
+ 
+    // Getters and Setters
+    public Integer getUserId() { return userId; }
+    public void setUserId(Integer userId) { this.userId = userId; }
+ 
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+ 
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+ 
+    public Integer getAddressId() { return addressId; }
+    public void setAddressId(Integer addressId) { this.addressId = addressId; }
+ 
+    public Double getBalance() { return balance; }
+    public void setBalance(Double balance) { this.balance = balance; }
+ 
+    public LocalDateTime getCreatedAt() { return createdAt; }
+    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+ 
+    public List<Payments> getPayments() { return payments; }
+    public void setPayments(List<Payments> payments) { this.payments = payments; }
 }

@@ -1,46 +1,46 @@
-package com.digitalgoldwallet.model;
+package com.wallet.app.model;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-
-
 @Entity
 @Table(name = "physical_gold_transactions")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class PhysicalGoldTransactions {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "transaction_id")
-    private Integer transactionId;
+    private Long transactionId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-   
-    private Users user;
+    private Users user;  // ✅ From second file
 
-    @Column(name = "branch_id", nullable = false)
-    private Integer branchId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "branch_id", nullable = false)
+    @JsonIgnoreProperties({"vendor", "transactions"})
+    private VendorBranch branch;  // ✅ From first file
 
-    @Column(name = "quantity", precision = 8, scale = 2, nullable = false)
+    @Column(name = "quantity", nullable = false)
     private Double quantity;
 
     @Column(name = "delivery_address_id", nullable = false)
-    private Integer deliveryAddressId;
+    private Long deliveryAddressId;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    
+    // ✅ Constructors
     public PhysicalGoldTransactions() {}
 
-    
-    public Integer getTransactionId() {
+    // ✅ Getters and Setters
+    public Long getTransactionId() {
         return transactionId;
     }
 
-    public void setTransactionId(Integer transactionId) {
+    public void setTransactionId(Long transactionId) {
         this.transactionId = transactionId;
     }
 
@@ -52,12 +52,12 @@ public class PhysicalGoldTransactions {
         this.user = user;
     }
 
-    public Integer getBranchId() {
-        return branchId;
+    public VendorBranch getBranch() {
+        return branch;
     }
 
-    public void setBranchId(Integer branchId) {
-        this.branchId = branchId;
+    public void setBranch(VendorBranch branch) {
+        this.branch = branch;
     }
 
     public Double getQuantity() {
@@ -68,11 +68,11 @@ public class PhysicalGoldTransactions {
         this.quantity = quantity;
     }
 
-    public Integer getDeliveryAddressId() {
+    public Long getDeliveryAddressId() {
         return deliveryAddressId;
     }
 
-    public void setDeliveryAddressId(Integer deliveryAddressId) {
+    public void setDeliveryAddressId(Long deliveryAddressId) {
         this.deliveryAddressId = deliveryAddressId;
     }
 
