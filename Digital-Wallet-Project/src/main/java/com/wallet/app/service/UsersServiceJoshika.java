@@ -1,4 +1,4 @@
-package com.wallet.service;
+package com.wallet.app.service;
 
 import java.util.List;
 

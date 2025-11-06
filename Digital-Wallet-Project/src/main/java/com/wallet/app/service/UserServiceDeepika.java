@@ -1,8 +1,8 @@
-package com.wallet.transaction.service;
+package com.wallet.app.service;
 
 import java.util.List;
 
-import com.wallet.transaction.entity.Users;
+import com.wallet.app.model.Users;
 public interface UserServiceDeepika {
    List<Users> getAllUsers();
    

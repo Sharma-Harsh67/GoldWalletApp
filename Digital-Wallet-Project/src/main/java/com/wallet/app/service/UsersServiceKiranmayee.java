@@ -1,11 +1,11 @@
-package com.digitalgoldwallet.service;
+package com.wallet.app.service;
 
-import com.digitalgoldwallet.dto.TransactionQuantityDTOKiranmayee;
-import com.digitalgoldwallet.dto.UsersDTOKiranmayee;
-import com.digitalgoldwallet.model.PhysicalGoldTransactions;
-import com.digitalgoldwallet.model.Users;
-import com.digitalgoldwallet.repository.UsersRepositoryKiranmayee;
-import com.digitalgoldwallet.repository.PhysicalGoldTransactionsRepositoryKiranmayee;
+import com.wallet.app.dto.TransactionQuantityDTOKiranmayee;
+import com.wallet.app.dto.UsersDTOKiranmayee;
+import com.wallet.app.model.PhysicalGoldTransactions;
+import com.wallet.app.model.Users;
+import com.wallet.app.repository.UsersRepositoryKiranmayee;
+import com.wallet.app.repository.PhysicalGoldTransactionsRepositoryKiranmayee;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

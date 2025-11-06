@@ -1,10 +1,10 @@
-package com.wallet.transaction.service;
+package com.wallet.app.service;
 
 
 
 import java.util.List;
 
-import com.wallet.transaction.dto.TransactionHistoryDTODeepika;
+import com.wallet.app.dto.TransactionHistoryDTODeepika;
 
 public interface TransactionHistoryServiceDeepika {
 
