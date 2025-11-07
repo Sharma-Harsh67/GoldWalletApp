@@ -5,4 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepositoryJagat extends JpaRepository<UserJagat, Integer> {}
+public interface UserRepositoryJagat extends JpaRepository<UserJagat, Integer> {
+    // additional queries if needed
+
+
+}
