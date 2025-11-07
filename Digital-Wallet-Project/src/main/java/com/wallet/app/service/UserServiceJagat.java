@@ -1,6 +1,6 @@
 package com.wallet.app.service;
 
-import com.wallet.app.dto.AddressDTOJagat;
+import com.wallet.app.dto.AddressDTO;
 import com.wallet.app.dto.UserDTOJagat;
 import com.wallet.app.model.AddressJagat;
 import com.wallet.app.model.UserJagat;
@@ -23,6 +23,7 @@ public class UserServiceJagat {
         this.addressRepository = addressRepository;
     }
 
+    // ✅ Get all users (basic info)
     public List<UserDTOJagat> getAllUsersSimple() {
         List<UserJagat> users = userRepository.findAll();
         return users.stream()
@@ -30,7 +31,8 @@ public class UserServiceJagat {
                 .collect(Collectors.toList());
     }
 
-    public Optional<AddressDTOJagat> getAddressForUser(Integer userId) {
+    // ✅ Get address for a user by ID
+    public Optional<AddressDTO> getAddressForUser(Integer userId) {
         Optional<UserJagat> userOpt = userRepository.findById(userId);
         if (userOpt.isEmpty()) return Optional.empty();
 
@@ -38,12 +40,13 @@ public class UserServiceJagat {
         if (addressId == null) return Optional.empty();
 
         Optional<AddressJagat> addrOpt = addressRepository.findById(addressId);
-        return addrOpt.map(a -> new AddressDTOJagat(
+        return addrOpt.map(a -> new AddressDTO(
                 a.getAddressId(), a.getStreet(), a.getCity(), a.getState(), a.getPostalCode(), a.getCountry()
         ));
     }
 
-    public Optional<AddressDTOJagat> getAddressByUserName(String name) {
+    // ✅ NEW METHOD: Get address by user name
+    public Optional<AddressDTO> getAddressByUserName(String name) {
         if (name == null || name.isBlank()) return Optional.empty();
 
         String cleanedName = name.trim().toLowerCase();
@@ -59,10 +62,9 @@ public class UserServiceJagat {
         if (addressId == null) return Optional.empty();
 
         return addressRepository.findById(addressId)
-                .map(a -> new AddressDTOJagat(
+                .map(a -> new AddressDTO(
                         a.getAddressId(), a.getStreet(), a.getCity(), a.getState(),
                         a.getPostalCode(), a.getCountry()
                 ));
     }
-
 }
