@@ -23,7 +23,6 @@ public class UserServiceJagat {
         this.addressRepository = addressRepository;
     }
 
-    // ✅ Get all users (basic info)
     public List<UserDTOJagat> getAllUsersSimple() {
         List<UserJagat> users = userRepository.findAll();
         return users.stream()
@@ -31,7 +30,6 @@ public class UserServiceJagat {
                 .collect(Collectors.toList());
     }
 
-    // ✅ Get address for a user by ID
     public Optional<AddressDTOJagat> getAddressForUser(Integer userId) {
         Optional<UserJagat> userOpt = userRepository.findById(userId);
         if (userOpt.isEmpty()) return Optional.empty();
@@ -45,7 +43,6 @@ public class UserServiceJagat {
         ));
     }
 
-    // ✅ NEW METHOD: Get address by user name
     public Optional<AddressDTOJagat> getAddressByUserName(String name) {
         if (name == null || name.isBlank()) return Optional.empty();
 
@@ -67,4 +64,5 @@ public class UserServiceJagat {
                         a.getPostalCode(), a.getCountry()
                 ));
     }
+
 }
