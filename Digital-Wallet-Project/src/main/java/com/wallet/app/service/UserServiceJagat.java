@@ -1,7 +1,7 @@
 package com.wallet.app.service;
 
-import com.wallet.app.dto.AddressResponseJagat;
-import com.wallet.app.dto.UserResponseJagat;
+import com.wallet.app.dto.AddressDTOJagat;
+import com.wallet.app.dto.UserDTOJagat;
 import com.wallet.app.model.AddressJagat;
 import com.wallet.app.model.UserJagat;
 import com.wallet.app.repository.AddressRepositoryJagat;
@@ -23,15 +23,16 @@ public class UserServiceJagat {
         this.addressRepository = addressRepository;
     }
 
-    public List<UserResponseJagat> getAllUsersSimple() {
+    // ✅ Get all users (basic info)
+    public List<UserDTOJagat> getAllUsersSimple() {
         List<UserJagat> users = userRepository.findAll();
         return users.stream()
-                .map(u -> new UserResponseJagat(u.getUserId(), u.getName(), u.getEmail(), u.getAddressId()))
+                .map(u -> new UserDTOJagat(u.getUserId(), u.getName(), u.getEmail(), u.getAddressId()))
                 .collect(Collectors.toList());
     }
 
-   
-    public Optional<AddressResponseJagat> getAddressForUser(Integer userId) {
+    // ✅ Get address for a user by ID
+    public Optional<AddressDTOJagat> getAddressForUser(Integer userId) {
         Optional<UserJagat> userOpt = userRepository.findById(userId);
         if (userOpt.isEmpty()) return Optional.empty();
 
@@ -39,13 +40,13 @@ public class UserServiceJagat {
         if (addressId == null) return Optional.empty();
 
         Optional<AddressJagat> addrOpt = addressRepository.findById(addressId);
-        return addrOpt.map(a -> new AddressResponseJagat(
+        return addrOpt.map(a -> new AddressDTOJagat(
                 a.getAddressId(), a.getStreet(), a.getCity(), a.getState(), a.getPostalCode(), a.getCountry()
         ));
     }
 
-   
-    public Optional<AddressResponseJagat> getAddressByUserName(String name) {
+    // ✅ NEW METHOD: Get address by user name
+    public Optional<AddressDTOJagat> getAddressByUserName(String name) {
         if (name == null || name.isBlank()) return Optional.empty();
 
         String cleanedName = name.trim().toLowerCase();
@@ -61,7 +62,7 @@ public class UserServiceJagat {
         if (addressId == null) return Optional.empty();
 
         return addressRepository.findById(addressId)
-                .map(a -> new AddressResponseJagat(
+                .map(a -> new AddressDTOJagat(
                         a.getAddressId(), a.getStreet(), a.getCity(), a.getState(),
                         a.getPostalCode(), a.getCountry()
                 ));
