@@ -32,13 +32,13 @@ public class PhysicalGoldTransactionsController {
     }
  
     
-    @GetMapping("/users/kiranmayee")
+    @GetMapping("/users/")
     public ResponseEntity<List<Users>> getAllUsers() {
         return ResponseEntity.ok(usersService.getAllUsers());
     }
  
     
-    @GetMapping("/users/kiranmayee/{id}")
+    @GetMapping("/users/{id}")
     public ResponseEntity<Users> getUserById(@PathVariable Integer id) {
         Users user = usersService.getUserById(id);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
