@@ -32,13 +32,13 @@ public class PhysicalGoldTransactionsController {
     }
  
     
-    @GetMapping("/users/")
+    @GetMapping("/users/kiranmayee")
     public ResponseEntity<List<Users>> getAllUsers() {
         return ResponseEntity.ok(usersService.getAllUsers());
     }
  
     
-    @GetMapping("/users/{id}")
+    @GetMapping("/users/kiranmayee/{id}")
     public ResponseEntity<Users> getUserById(@PathVariable Integer id) {
         Users user = usersService.getUserById(id);
         return user != null ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
@@ -51,4 +51,5 @@ public class PhysicalGoldTransactionsController {
     }
     
 }
+
  
