@@ -1,7 +1,7 @@
 package com.wallet.app.controller;
 
 //import com.wallet.app.dto.AddressResponseJagat;
-import com.wallet.app.dto.UserResponseJagat;
+import com.wallet.app.dto.UserDTOJagat;
 import com.wallet.app.service.UserServiceJagat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +19,8 @@ public class UserControllerJagat {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<List<UserResponseJagat>> getAllUsers() {
-        List<UserResponseJagat> users = userService.getAllUsersSimple();
+    public ResponseEntity<List<UserDTOJagat>> getAllUsers() {
+        List<UserDTOJagat> users = userService.getAllUsersSimple();
         return ResponseEntity.ok(users);
     }
 
