@@ -30,6 +30,10 @@ public void setHoldingId(Integer holdingId) {
 	this.holdingId = holdingId;
 }
  
+public VirtualGoldHoldingDTO() {
+	super();
+}
+
 public Integer getBranchId() {
 	return branchId;
 }
