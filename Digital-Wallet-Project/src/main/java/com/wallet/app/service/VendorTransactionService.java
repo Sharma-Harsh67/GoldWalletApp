@@ -2,6 +2,8 @@ package com.wallet.app.service;
 
 import com.wallet.app.dto.VendorTransactionDTO;
 import com.wallet.app.dto.UserTransactionDTO;
+import com.wallet.app.exception.UserNotFoundException;
+import com.wallet.app.exception.VendorNotFoundException;
 import com.wallet.app.model.PhysicalGoldTransactions;
 import com.wallet.app.model.Vendor;
 import com.wallet.app.model.VendorBranch;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class VendorTransactionService {
+
     private final VendorBranchRepository branchRepository;
     private final PhysicalGoldTransactionRepository transactionRepository;
     private final VendorRepository vendorRepository;
@@ -29,18 +32,23 @@ public class VendorTransactionService {
         this.vendorRepository = vendorRepository;
     }
 
+    // ==================== Vendor Transactions ====================
     @Transactional(readOnly = true)
     public List<VendorTransactionDTO> getTransactionsByVendorId(Long vendorId) {
         List<VendorBranch> branches = branchRepository.findByVendorVendorId(vendorId);
+        if (branches == null || branches.isEmpty()) {
+            throw new VendorNotFoundException(vendorId);
+        }
+
         List<Long> branchIds = branches.stream()
                 .map(VendorBranch::getBranchId)
                 .collect(Collectors.toList());
-        
-        if (branchIds.isEmpty()) {
-            return new ArrayList<>();
-        }
-        
+
         List<PhysicalGoldTransactions> transactions = transactionRepository.findByBranchBranchIdIn(branchIds);
+        if (transactions == null || transactions.isEmpty()) {
+            throw new VendorNotFoundException(vendorId);
+        }
+
         return mapToVendorTransactionDTO(transactions);
     }
 
@@ -48,17 +56,24 @@ public class VendorTransactionService {
     public List<VendorTransactionDTO> getTransactionsByVendorName(String vendorName) {
         Vendor vendor = vendorRepository.findByVendorName(vendorName);
         if (vendor == null) {
-            return new ArrayList<>();
+            throw new VendorNotFoundException(vendorName);
         }
         return getTransactionsByVendorId(vendor.getVendorId());
     }
 
+    // ==================== User Transactions ====================
     @Transactional(readOnly = true)
     public List<UserTransactionDTO> getTransactionsByUserName(String userName) {
         List<PhysicalGoldTransactions> transactions = transactionRepository.findByUserName(userName);
+
+        if (transactions == null || transactions.isEmpty()) {
+            throw new UserNotFoundException(userName);
+        }
+
         return mapToUserTransactionDTO(transactions);
     }
 
+    // ==================== Mapping Methods ====================
     private List<VendorTransactionDTO> mapToVendorTransactionDTO(List<PhysicalGoldTransactions> transactions) {
         return transactions.stream()
                 .map(t -> new VendorTransactionDTO(
