@@ -6,7 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UserRepositoryJagat extends JpaRepository<UserJagat, Integer> {
-    // additional queries if needed
-
-
+    
 }
