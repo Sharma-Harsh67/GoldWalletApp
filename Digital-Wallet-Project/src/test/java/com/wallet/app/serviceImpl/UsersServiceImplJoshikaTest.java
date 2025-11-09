@@ -1,7 +1,9 @@
-package com.wallet.app.serviceimpl;
+package com.wallet.app.serviceImpl;
 
 import com.wallet.app.model.Users;
 import com.wallet.app.repository.UsersRepositoryJoshika;
+import com.wallet.app.serviceimpl.UsersServiceImplJoshika;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
