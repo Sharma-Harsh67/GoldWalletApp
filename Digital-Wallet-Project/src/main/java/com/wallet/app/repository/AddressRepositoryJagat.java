@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AddressRepositoryJagat extends JpaRepository<AddressJagat, Integer> {
-    // additional queries if needed
+
 }
